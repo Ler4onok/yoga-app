@@ -1,0 +1,26 @@
+{
+    "name": "studying",
+    "version": "1.0.0",
+    "description": "mern",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "server": "nodemon app.js",
+        "client": "yarn --cwd client start",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "author": "Lera Chizh",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "5.0.1",
+        "concurrently": "7.3.0",
+        "config": "3.3.7",
+        "create-react-app": "1.2.1",
+        "express": "4.18.1",
+        "express-validator": "6.14.2",
+        "jsonwebtoken": "8.5.1",
+        "mongoose": "6.5.0",
+        "nodemon": "2.0.19",
+        "tar": "6.1.11"
+    }
+}
