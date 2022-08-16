@@ -1,0 +1,7 @@
+{
+    "auth": "Authorization",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit", 
+    "cancel": "Cancel"
+}

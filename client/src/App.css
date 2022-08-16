@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+html, body, #root, .container {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
