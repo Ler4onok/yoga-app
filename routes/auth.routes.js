@@ -16,26 +16,27 @@ const router = Router();
 router.post('/register',
     [
         check('email', 'Incorrect email.').isEmail(),
-        check('password', 'Password length must be more than 6 symbols.').isLength({min: 6})
+        check('password', 'Password length must be more than 6 symbols.').isLength({min: 4})
     ],
     async (request, response) => {
         try {
 
             const {email, password} = request.body;
+            console.log({email, password})
 
-            if (validationResult(request)) {
-                return response.status(400).json({message: 'Incorrect data.'})
-            }
+            // if (!validationResult(request).isEmpty()) {
+            //     return response.status(400).json({message: 'Incorrect data.'})
+            // }
 
             // check if user exists
             if (await User.findOne({email})) {
                 return response.status(400).json({message: 'Such user already exists.'});
             }
 
-            // encrypt password with 12 sault rounds
-            const hashedPassword = bcrypt.hash(password, 12);
+            // // encrypt password with 12 sault rounds
+            const hashedPassword = await bcrypt.hash(password, 12);
 
-            // create a new user
+            // // create a new user
             const user = new User({email, password: hashedPassword});
 
             await user.save();
@@ -59,7 +60,7 @@ router.post('/login',
 
         try {
             // TODO: create a function to return all errors with status code 400
-            if (validationResult(request)) {
+            if (!validationResult(request).isEmpty()) {
                 return response.status(400).json({message: 'Incorrect data.'});
             }
 
@@ -87,7 +88,7 @@ router.post('/login',
             );
 
             // return successful response with token 
-            res.status(201).json({token, userId: user.id});
+            response.status(201).json({token, userId: user.id});
 
 
         } catch (error) {
