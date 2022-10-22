@@ -12,29 +12,23 @@ import {IntlProvider} from 'react-intl';
 import messages from './en.json';
 // mui
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import {useAuth} from './hooks/auth';
-import {AuthContext} from './context/AuthContext';
+import {AppStore} from './store/store';
 
 
 /**
  * Application root
  */
 function App() {
-    const {login, logout, token} = useAuth();
-    const isAuthenticated = !!token;
-    console.log(isAuthenticated)
-    const routes = useRoutes(isAuthenticated);
+    AppStore.useState(store => console.log(store))
+    const routes = useRoutes();
+
 
     return (
         <IntlProvider messages={messages} locale='en'>
             <ThemeProvider theme={theme}>
-                <AuthContext.Provider value={{
-                    login, logout, token, isAuthenticated
-                }}>
                     <Router>
                         {routes}
                     </Router>
-                </AuthContext.Provider>
             </ThemeProvider>
         </IntlProvider>
     );

@@ -21,6 +21,7 @@
         "jsonwebtoken": "8.5.1",
         "mongoose": "6.5.0",
         "nodemon": "2.0.19",
+        "pullstate": "^1.24.0",
         "tar": "6.1.11"
     }
 }
