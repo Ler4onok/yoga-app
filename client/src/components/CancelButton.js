@@ -10,4 +10,4 @@ import Button from '@mui/material/Button';
  */
 export const CancelButton = () => {
     return <Button color='primary'><FormattedMessage id='cancel' /></Button>;
-}
+};

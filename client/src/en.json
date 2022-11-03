@@ -2,6 +2,14 @@
     "auth": "Authorization",
     "email": "Email",
     "password": "Password",
-    "submit": "Submit", 
-    "cancel": "Cancel"
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "header.events": "Events",
+    "header.calendar": "Calendar",
+    "header.teachers": "Teachers",
+    "header.aboutUs": "About us",
+    "header.profile": "Profile",
+    "header.tempLogo": "Y O G A · S T U D I O",
+    "main.welcome.title": "WELCOME TO YOGA STUDIO",
+    "main.welcome.text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lorem dui, ornare feugiat neque eu, condimentum sodales felis. Integer sit amet convallis mauris. Donec mattis posuere augue, eget interdum nulla scelerisque gravida."
 }

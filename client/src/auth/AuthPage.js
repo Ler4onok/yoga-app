@@ -27,6 +27,7 @@ export const AuthPage = () => {
             if (response.status === 201) {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
+                AppStore.update(store => {store.isAuthorized = true});
                 navigate('/')
             }
             else {

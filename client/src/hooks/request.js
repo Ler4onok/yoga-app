@@ -1,6 +1,8 @@
-import {useCallback, useState} from 'react';
+import {useState} from 'react';
+// libs
 import axios from 'axios';
 
+// todo: add comments
 export const useHttp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -15,17 +17,14 @@ export const useHttp = () => {
                     });
                     break;
                 case 'POST':
-                    // TOASK: why response => return response returned undefined in render? 
-                    return axios.post(url, body)
-                
+                    return axios.post(url, body);
             }
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            setError(error)
-        }
-    }
+            setError(error);
+        };
+    };
 
-    return { request, loading, error }
-}
-
+    return {request, loading, error};
+};
