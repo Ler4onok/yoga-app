@@ -1,22 +1,24 @@
 import React from "react";
-// translation
-import { FormattedMessage } from "react-intl";
 // form
 import { useFormik } from "formik";
 // mui
-import Card from "@mui/material/Card";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 // components
 import { SubmitButton } from "../components/SubmitButton";
 import { CancelButton } from "../components/CancelButton";
-
+// hooks
+import { useNavigate } from "react-router-dom";
+import { AuthContainer } from "./AuthContainer";
+import { useHttp } from "../hooks/request";
 
 /**
  *  Login form to authorize a user
  */
-export const Login = ({ sharedFieldProps, handleSubmit }) => {
+export const Login = () => {
+    const navigate = useNavigate();
+    const { request } = useHttp();
+
     // a simple form initialization
     const formik = useFormik({
         initialValues: {
@@ -25,34 +27,44 @@ export const Login = ({ sharedFieldProps, handleSubmit }) => {
         },
         // todo: different buttons for register and login
         onSubmit: (values) => {
-            handleSubmit(values);
+            handleLogin(values);
         }
     });
 
+    const handleLogin = (values) => {
+        request("api/auth/login", "POST", {
+            email: values.email,
+            password: values.password
+        }).then((response) => {
+            if (response.status === 201) {
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+                navigate("/");
+            } else {
+                // todo: handle error
+                alert("Something went wrong...");
+            }
+        });
+    };
+
+    const sharedFieldProps = {
+        variant: "outlined"
+    };
+
     // TODO: add component box with positioning props
     return (
-        <Card sx={{ p: (theme) => theme.spacing(2) }}>
-            <Box
-                component="form"
-                onSubmit={formik.handleSubmit}
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: (theme) => theme.spacing(2)
-                }}
-            >
+        <AuthContainer isRegister={false}>
+            <Box component="form" onSubmit={formik.handleSubmit}>
                 <Box
                     sx={{
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        gap: (theme) => theme.spacing(2)
+                        gap: (theme) => theme.spacing(2),
+                        py: 2
                     }}
                 >
-                    <Typography variant="h4">
-                        <FormattedMessage id="auth" />
-                    </Typography>
                     <TextField
                         label="Email"
                         id="email"
@@ -83,6 +95,6 @@ export const Login = ({ sharedFieldProps, handleSubmit }) => {
                     <SubmitButton />
                 </Box>
             </Box>
-        </Card>
+        </AuthContainer>
     );
 };
