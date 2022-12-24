@@ -28,20 +28,22 @@ export const Header = () => {
             letterSpacing: 2
         },
         linkContainer: {
-            display: 'flex',
+            display: {xs: 'none', sm: 'flex'},
             alignItems: 'center',
             justifyContent: 'flex-start',
             gap: 2
         }
     };
   
-    return isAuthorized && <Box sx={{px: 40, py: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+    return isAuthorized && <Box sx={{px: 4, py: 2, display: 'grid', alignItems: 'center', gridTemplateColumns: '1fr 1fr 1fr', height: '100px'}}>
         <Box sx={styles.linkContainer}>
             <Link sx={styles.link} to='/events'><FormattedMessage id='header.events' /></Link>
             <Link sx={styles.link} to='/calendar'><FormattedMessage id='header.calendar' /></Link>
         </Box>
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <Link sx={{...styles.link, fontSize: 32, fontWeight: 100}} to='/'><FormattedMessage id='header.tempLogo' /></Link>
-        <Box sx={styles.linkContainer}>
+        </Box>
+        <Box sx={{...styles.linkContainer, justifyContent: 'flex-end'}}>
             <Link sx={styles.link} to='/teachers'><FormattedMessage id='header.teachers' /></Link>
             <Link sx={styles.link} to='/about-us'><FormattedMessage id='header.aboutUs' /></Link>
             <Link sx={styles.link} to='/profile'><FormattedMessage id='header.profile' /></Link>
