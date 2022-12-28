@@ -6,6 +6,7 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 // pages
 import { HomePage } from "./pages/HomePage";
 import { AboutUsPage } from "./pages/AboutUsPage";
+import { Events } from "./pages/Events";
 // auth pages
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
@@ -37,6 +38,16 @@ export const useRoutes = () => {
                     </ProtectedRoute>
                 }
             />
+            <Route
+                path="/events"
+                exact
+                element={
+                    <ProtectedRoute>
+                        <Events />
+                    </ProtectedRoute>
+                }
+            />
+
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
