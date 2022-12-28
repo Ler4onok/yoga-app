@@ -1,5 +1,9 @@
 {
-    "auth": "Authorization",
+    "auth.register": "Register",
+    "auth.login": "Login",
+    "auth.toLogin": "Already have the account?",
+    "auth.toRegister": "Do not have an account yet?",
+    "username": "Username",
     "email": "Email",
     "password": "Password",
     "submit": "Submit",

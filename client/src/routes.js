@@ -1,23 +1,43 @@
-import React from 'react';
+import React from "react";
 // router
-import {Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route, Navigate } from "react-router-dom";
 // components
-import {ProtectedRoute} from './auth/ProtectedRoute';
+import { ProtectedRoute } from "./auth/ProtectedRoute";
 // pages
-import {AuthPage} from './auth/AuthPage';
-import {HomePage} from './pages/HomePage';
-import {AboutUsPage} from './pages/AboutUsPage';
-
+import { HomePage } from "./pages/HomePage";
+import { AboutUsPage } from "./pages/AboutUsPage";
+// auth pages
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
 
 /**
- * Routes handling 
+ * Routes handling
  */
 // todo: add not found
 export const useRoutes = () => {
-    return <Routes>
-        <Route path='/login' element={<AuthPage />} />
-        <Route path='/' exact element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-        <Route path='/about-us' exact element={<ProtectedRoute><AboutUsPage /></ProtectedRoute>} />
-        <Route path='*' element={<Navigate to='/' replace />} />
-    </Routes>;
+    return (
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+                path="/"
+                exact
+                element={
+                    <ProtectedRoute>
+                        <HomePage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/about-us"
+                exact
+                element={
+                    <ProtectedRoute>
+                        <AboutUsPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+    );
 };
