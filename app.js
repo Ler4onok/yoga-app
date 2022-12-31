@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json({extended: true}))
 
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/event', require('./routes/event.routes'))
 
 // get port from config
 const PORT = config.get('port') || 6000;

@@ -4,9 +4,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // components
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 // pages
-import { HomePage } from "./pages/HomePage";
-import { AboutUsPage } from "./pages/AboutUsPage";
-import { Events } from "./pages/Events";
+import { Home } from "./pages/Home";
+import { AboutUs } from "./pages/AboutUs";
+import { Events } from "./pages/events/Events";
+import { Profile } from "./pages/profile/Profile";
 // auth pages
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
@@ -25,7 +26,7 @@ export const useRoutes = () => {
                 exact
                 element={
                     <ProtectedRoute>
-                        <HomePage />
+                        <Home />
                     </ProtectedRoute>
                 }
             />
@@ -34,7 +35,7 @@ export const useRoutes = () => {
                 exact
                 element={
                     <ProtectedRoute>
-                        <AboutUsPage />
+                        <AboutUs />
                     </ProtectedRoute>
                 }
             />
@@ -44,6 +45,15 @@ export const useRoutes = () => {
                 element={
                     <ProtectedRoute>
                         <Events />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/profile"
+                exact
+                element={
+                    <ProtectedRoute>
+                        <Profile />
                     </ProtectedRoute>
                 }
             />
