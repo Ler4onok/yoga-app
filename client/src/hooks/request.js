@@ -12,10 +12,7 @@ export const useHttp = () => {
         try {
             switch (method) {
                 case 'GET':
-                    axios.get(url).then(response => {
-                        return response;
-                    });
-                    break;
+                    return axios.get(url);
                 case 'POST':
                     return axios.post(url, body);
             }
